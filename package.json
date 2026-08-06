@@ -14,7 +14,7 @@
     "sync": "node src/cli.js sync",
     "list": "node src/cli.js list",
     "status": "node src/cli.js status",
-    "test": "node --test test/sync.test.js"
+    "test": "node --test test/sync.test.js test/integration.test.js"
   },
   "keywords": [
     "google-tasks",

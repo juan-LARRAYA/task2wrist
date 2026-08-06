@@ -103,6 +103,21 @@ node src/cli.js logout      # remove stored credentials
 
 ---
 
+## Testing
+
+Zero-dependency tests using Node's built-in runner:
+
+```sh
+npm test
+```
+
+- `test/sync.test.js` — sync logic against a mocked Google API (idempotency, updates, completion/deletion, all-day vs timed events).
+- `test/integration.test.js` — spawns the **real CLI processes** (`login`, `sync`, `list`, `status`) against a local server implementing Google's OAuth device flow, Tasks, and Calendar protocol, including token refresh.
+
+The integration test runs on a local mock so it never touches your real Google data. To point the app at a different endpoint (e.g. a mock or proxy) set `TASK2WRIST_API_BASE` and `TASK2WRIST_OAUTH_BASE`; they default to Google's endpoints.
+
+---
+
 ## Privacy
 
 Your credentials and tokens stay on your device in `~/.config/task2wrist/` and are never sent anywhere except Google's own APIs. No servers, no tracking, no analytics — this runs entirely on your machine.

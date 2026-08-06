@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import path from 'node:path'
-import { CREDS_FILE, TOKEN_FILE, SCOPES } from './config.js'
+import { CREDS_FILE, TOKEN_FILE, SCOPES, OAUTH_BASE } from './config.js'
 
 function ensureDir(file) {
   mkdirSync(path.dirname(file), { recursive: true })
@@ -45,7 +45,7 @@ export class Token {
   }
 
   async refresh() {
-    const res = await fetch('https://oauth2.googleapis.com/token', {
+    const res = await fetch(OAUTH_BASE + '/token', {
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
@@ -63,7 +63,7 @@ export class Token {
 }
 
 async function deviceAuthorization(clientId) {
-  const res = await fetch('https://oauth2.googleapis.com/device/code', {
+  const res = await fetch(OAUTH_BASE + '/device/code', {
     method: 'POST',
     headers: { 'content-type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ client_id: clientId, scope: SCOPES }),
@@ -76,7 +76,7 @@ async function pollForToken(clientId, deviceCode, interval) {
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
   for (;;) {
     await sleep(interval * 1000)
-    const res = await fetch('https://oauth2.googleapis.com/token', {
+    const res = await fetch(OAUTH_BASE + '/token', {
       method: 'POST',
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({

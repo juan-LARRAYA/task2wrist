@@ -7,3 +7,5 @@ export const TOKEN_FILE = path.join(CONFIG_DIR, 'token.json')
 export const SCOPES = 'https://www.googleapis.com/auth/tasks https://www.googleapis.com/auth/calendar'
 export const CALENDAR_ID = 'task2wrist'
 export const MARKER = 'task2wrist'
+export const API_BASE = (process.env.TASK2WRIST_API_BASE || 'https://www.googleapis.com').replace(/\/$/, '')
+export const OAUTH_BASE = (process.env.TASK2WRIST_OAUTH_BASE || 'https://oauth2.googleapis.com').replace(/\/$/, '')
