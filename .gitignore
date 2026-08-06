@@ -1,0 +1,8 @@
+node_modules/
+.config/
+*.log
+client_secret.json
+token.json
+state.json
+sync.lock
+.DS_Store

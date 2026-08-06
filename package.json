@@ -1,0 +1,29 @@
+{
+  "name": "task2wrist",
+  "version": "1.0.0",
+  "description": "Push your Google Tasks into any smartwatch that mirrors Google Calendar (Redmi Watch 6, Garmin, Xiaomi, Huawei, Amazfit, Wear OS...).",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "task2wrist": "src/cli.js"
+  },
+  "scripts": {
+    "login": "node src/cli.js login",
+    "sync": "node src/cli.js sync",
+    "list": "node src/cli.js list",
+    "status": "node src/cli.js status",
+    "test": "node --test test/sync.test.js"
+  },
+  "keywords": [
+    "google-tasks",
+    "smartwatch",
+    "redmi-watch-6",
+    "garmin",
+    "wear-os",
+    "calendar",
+    "sync"
+  ],
+  "license": "MIT"
+}
